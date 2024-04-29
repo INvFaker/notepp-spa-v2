@@ -19,7 +19,7 @@ function InputPage() {
 
 	return (
 		<section className="px-9 pt-9">
-			<h1 className="text-3xl font-bold my-4">
+			<h1 className="text-3xl font-bold my-4 dark:text-white">
 				{locale === "EN" ? "Make New Note" : "Buat Catatan Baru"}
 			</h1>
 			<form
@@ -27,19 +27,22 @@ function InputPage() {
 				onSubmit={handleSubmitForm}
 			>
 				<input
-					className="text-5xl w-full py-2 block bg-inherit border-white rounded-xl focus:outline-none"
+					className="text-5xl w-full py-2 block bg-inherit border-white rounded-xl focus:outline-none dark:text-white"
 					type="text"
 					placeholder="Judul Catatan"
 					value={title}
 					onChange={handleTitleInput}
 				/>
 				<textarea
-					className="text-3xl w-full h-[45vh] mb-4 py-2 block bg-inherit border-white focus:outline-none"
+					className="text-3xl w-full h-[45vh] mb-4 py-2 block bg-inherit border-white focus:outline-none dark:text-white"
 					placeholder="Deskripsi catatan"
 					value={body}
 					onChange={handleBodyInput}
 				/>
-				<button type="submit" className="absolute bottom-3 right-3">
+				<button
+					type="submit"
+					className="absolute bottom-3 right-3 dark:text-white"
+				>
 					<CgCheckR className="w-8 h-8" />
 				</button>
 			</form>

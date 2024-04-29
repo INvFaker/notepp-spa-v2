@@ -10,7 +10,7 @@ function ArchivePage() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [notes, setNotes] = useState([]);
 	const [keywords, setKeywords] = useState(() => {
-		return searchParams.get("keyword") || "";
+		return searchParams.get("title") || "";
 	});
 	const [loading, setLoading] = useState(true);
 
@@ -63,7 +63,7 @@ function ArchivePage() {
 						visible={true}
 						height="80"
 						width="80"
-						color="#4fa94d"
+						color="#0EA3E9"
 						radius="9"
 						ariaLabel="three-dots-loading"
 						wrapperStyle={{}}
@@ -71,7 +71,9 @@ function ArchivePage() {
 					/>
 				) : notes.length === 0 ? (
 					<p className="text-2xl text-center min-h-[70vh] leading-[70vh] dark:text-white">
-						Catatan tidak ditemukan!
+						{locale === "EN"
+							? "There is no record!"
+							: "Tidak ada catatan!"}
 					</p>
 				) : (
 					<NoteItemList notes={filteredNotes} />

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { FiArchive, FiFilePlus, FiFileText, FiLogOut } from "react-icons/fi";
 import ButtonContext from "./ButtonContext";
 
-function Navbar({ onLogout }) {
+function Navbar({ onLogout, name }) {
 	return (
 		<>
 			<ButtonContext />
@@ -25,9 +25,12 @@ function Navbar({ onLogout }) {
 							<FiFilePlus className="w-8 h-8 dark:text-white" />
 						</Link>
 					</li>
-					<li>
-						<button onClick={onLogout}>
-							<FiLogOut className="w-8 h-8 dark:text-white" />
+					<li className="flex gap-2">
+						<div className="flex items-center gap-1 dark:text-white">
+							<h1 className="text-xl">{name}</h1>
+						</div>
+						<button onClick={onLogout} className="dark:text-white">
+							<FiLogOut className="w-8 h-8 " />
 						</button>
 					</li>
 				</ul>
@@ -38,6 +41,7 @@ function Navbar({ onLogout }) {
 
 Navbar.propTypes = {
 	onLogout: PropTypes.func.isRequired,
+	name: PropTypes.string.isRequired,
 };
 
 export default Navbar;

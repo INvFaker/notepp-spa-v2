@@ -55,30 +55,23 @@ function App() {
 		};
 	}, [theme]);
 
+	useEffect(() => {
+		getUserLogged().then(({ data }) => {
+			setAuthedUser(data);
+			setInitializing(false);
+		});
+	}, []);
+
 	const onLoginSuccess = async ({ accessToken }) => {
 		putAccessToken(accessToken);
 		const { data } = await getUserLogged();
-		setAuthedUser(() => {
-			return {
-				authedUser: data,
-			};
-		});
+		setAuthedUser(data);
 	};
 
 	const onLogout = () => {
 		setAuthedUser(null);
 		putAccessToken("");
 	};
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const { data } = await getUserLogged();
-			setAuthedUser(data);
-			setInitializing(false);
-		};
-
-		fetchData();
-	}, []);
 
 	if (initializing) {
 		return null;
@@ -129,7 +122,10 @@ function App() {
 						<div className="dark:bg-neutral-900 h-screen">
 							<header className="max-w-[1200px] mx-auto px-9 py-6 flex justify-between items-center">
 								<Logo />
-								<Navbar onLogout={onLogout} />
+								<Navbar
+									onLogout={onLogout}
+									name={authedUser.name}
+								/>
 							</header>
 							<main className="max-w-[1200px] mx-auto">
 								<Routes>
